@@ -1,9 +1,5 @@
 cd MarsDataMule-Orbit-Discovery
 
-# Create clean README focusing on SRP discovery
-cat > README.md << 'EOF'
-# MarsDataMule-Orbit-Discovery
-
 # Discovery of SRP-Optimized Mars-Earth Near-Resonant Cycler Orbit
 
 ## Discovery Information
