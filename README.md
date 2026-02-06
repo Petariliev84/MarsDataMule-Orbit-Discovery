@@ -60,7 +60,11 @@ cat > README.md << 'EOF'
 - **4000 kg achieves 2× Mars visits** 
 - **Self-optimizing orbit** - Performance IMPROVES with mission duration
 
----
+- ![Earth-Cycler-Mars Celestial Alignment](Visual_aligment1.jpg)
+*GMAT visualization showing breakthrough geometric configuration: 
+Earth, Cycler Satellite, and Mars align in near-perfect straight line.
+This alignment explains the 3.27 million× signal improvement claims.*
+
 
 ##  Verification Methodology
 
