@@ -1,0 +1,169 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2026-02-05 16:45:24
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft EarthMarsRelay;
+EarthMarsRelay.DateFormat = UTCGregorian;
+EarthMarsRelay.Epoch = '01 Jan 2035 00:00:00.000';
+EarthMarsRelay.CoordinateSystem = SunMu2000Eq;
+EarthMarsRelay.DisplayStateType = Keplerian;
+EarthMarsRelay.SMA = 184200000.0000002;
+EarthMarsRelay.ECC = 0.3000000000000033;
+EarthMarsRelay.INC = 24.50000000000001;
+EarthMarsRelay.RAAN = 360;
+EarthMarsRelay.AOP = 337.5000000000003;
+EarthMarsRelay.TA = 154.9999999999996;
+EarthMarsRelay.DryMass = 850;
+EarthMarsRelay.Cd = 2.2;
+EarthMarsRelay.Cr = 1.8;
+EarthMarsRelay.DragArea = 15;
+EarthMarsRelay.SRPArea = 1;
+EarthMarsRelay.SPADDragScaleFactor = 1;
+EarthMarsRelay.SPADSRPScaleFactor = 1;
+EarthMarsRelay.AtmosDensityScaleFactor = 1;
+EarthMarsRelay.ExtendedMassPropertiesModel = 'None';
+EarthMarsRelay.NAIFId = -10000001;
+EarthMarsRelay.NAIFIdReferenceFrame = -9000001;
+EarthMarsRelay.OrbitColor = Red;
+EarthMarsRelay.TargetColor = Teal;
+EarthMarsRelay.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+EarthMarsRelay.CdSigma = 1e+70;
+EarthMarsRelay.CrSigma = 1e+70;
+EarthMarsRelay.Id = 'SatId';
+EarthMarsRelay.Attitude = CoordinateSystemFixed;
+EarthMarsRelay.SPADSRPInterpolationMethod = Bilinear;
+EarthMarsRelay.SPADSRPScaleFactorSigma = 1e+70;
+EarthMarsRelay.SPADDragInterpolationMethod = Bilinear;
+EarthMarsRelay.SPADDragScaleFactorSigma = 1e+70;
+EarthMarsRelay.AtmosDensityScaleFactorSigma = 1e+70;
+EarthMarsRelay.ModelFile = 'aura.3ds';
+EarthMarsRelay.ModelOffsetX = 0;
+EarthMarsRelay.ModelOffsetY = 0;
+EarthMarsRelay.ModelOffsetZ = 0;
+EarthMarsRelay.ModelRotationX = 0;
+EarthMarsRelay.ModelRotationY = 0;
+EarthMarsRelay.ModelRotationZ = 0;
+EarthMarsRelay.ModelScale = 1;
+EarthMarsRelay.AttitudeDisplayStateType = 'Quaternion';
+EarthMarsRelay.AttitudeRateDisplayStateType = 'AngularVelocity';
+EarthMarsRelay.AttitudeCoordinateSystem = SunMu2000Eq;
+EarthMarsRelay.EulerAngleSequence = '321';
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+DefaultProp_ForceModel.CentralBody = Sun;
+DefaultProp_ForceModel.PointMasses = {Earth, Jupiter, Luna, Mars, Mercury, Neptune, Pluto, Saturn, Sun, Uranus, Venus};
+DefaultProp_ForceModel.Drag = None;
+DefaultProp_ForceModel.SRP = Off;
+DefaultProp_ForceModel.RelativisticCorrection = Off;
+DefaultProp_ForceModel.ErrorControl = RSSStep;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+DefaultProp.FM = DefaultProp_ForceModel;
+DefaultProp.Type = RungeKutta89;
+DefaultProp.InitialStepSize = 86400;
+DefaultProp.Accuracy = 1e-08;
+DefaultProp.MinStep = 600;
+DefaultProp.MaxStep = 86400;
+DefaultProp.MaxStepAttempts = 50;
+DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem SunMu2000Eq;
+SunMu2000Eq.Origin = Sun;
+SunMu2000Eq.Axes = MJ2000Eq;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView;
+DefaultOrbitView.SolverIterations = Current;
+DefaultOrbitView.UpperLeft = [ 0.001176470588235294 0 ];
+DefaultOrbitView.Size = [ 0.5 0.4500601684717208 ];
+DefaultOrbitView.RelativeZOrder = 2113;
+DefaultOrbitView.Maximized = false;
+DefaultOrbitView.Add = {EarthMarsRelay, Earth, Mars};
+DefaultOrbitView.CoordinateSystem = SunMu2000Eq;
+DefaultOrbitView.DrawObject = [ true true true ];
+DefaultOrbitView.DataCollectFrequency = 1;
+DefaultOrbitView.UpdatePlotFrequency = 50;
+DefaultOrbitView.NumPointsToRedraw = 0;
+DefaultOrbitView.ShowPlot = true;
+DefaultOrbitView.MaxPlotPoints = 20000;
+DefaultOrbitView.ShowLabels = true;
+DefaultOrbitView.ViewPointReference = Jupiter;
+DefaultOrbitView.ViewPointVector = [ 30000 0 0 ];
+DefaultOrbitView.ViewDirection = Earth;
+DefaultOrbitView.ViewScaleFactor = 1;
+DefaultOrbitView.ViewUpCoordinateSystem = SunMu2000Eq;
+DefaultOrbitView.ViewUpAxis = Z;
+DefaultOrbitView.EclipticPlane = Off;
+DefaultOrbitView.XYPlane = On;
+DefaultOrbitView.WireFrame = Off;
+DefaultOrbitView.Axes = On;
+DefaultOrbitView.Grid = Off;
+DefaultOrbitView.SunLine = Off;
+DefaultOrbitView.UseInitialView = On;
+DefaultOrbitView.StarCount = 7000;
+DefaultOrbitView.EnableStars = On;
+DefaultOrbitView.EnableConstellations = On;
+
+Create GroundTrackPlot DefaultGroundTrackPlot;
+DefaultGroundTrackPlot.SolverIterations = Current;
+DefaultGroundTrackPlot.UpperLeft = [ 0.001176470588235294 0.4512635379061372 ];
+DefaultGroundTrackPlot.Size = [ 0.5 0.4500601684717208 ];
+DefaultGroundTrackPlot.RelativeZOrder = 1977;
+DefaultGroundTrackPlot.Maximized = false;
+DefaultGroundTrackPlot.Add = {EarthMarsRelay};
+DefaultGroundTrackPlot.DataCollectFrequency = 1;
+DefaultGroundTrackPlot.UpdatePlotFrequency = 50;
+DefaultGroundTrackPlot.NumPointsToRedraw = 0;
+DefaultGroundTrackPlot.ShowPlot = true;
+DefaultGroundTrackPlot.MaxPlotPoints = 20000;
+DefaultGroundTrackPlot.CentralBody = Earth;
+DefaultGroundTrackPlot.TextureMap = 'ModifiedBlueMarble.jpg';
+
+Create ReportFile ReportFile1;
+ReportFile1.SolverIterations = Current;
+ReportFile1.UpperLeft = [ 0.348235294117647 0.1528279181708785 ];
+ReportFile1.Size = [ 0.5888235294117647 0.7773766546329723 ];
+ReportFile1.RelativeZOrder = 2111;
+ReportFile1.Maximized = false;
+ReportFile1.Filename = 'ReportFile1.txt';
+ReportFile1.Precision = 16;
+ReportFile1.Add = {EarthMarsRelay.Mars.RadPer};
+ReportFile1.WriteHeaders = true;
+ReportFile1.LeftJustify = On;
+ReportFile1.ZeroFill = Off;
+ReportFile1.FixedWidth = true;
+ReportFile1.Delimiter = ' ';
+ReportFile1.ColumnWidth = 23;
+ReportFile1.WriteReport = true;
+ReportFile1.AppendToExistingFile = false;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate DefaultProp(EarthMarsRelay) {EarthMarsRelay.ElapsedDays = 3560};
