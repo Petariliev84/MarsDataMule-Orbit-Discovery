@@ -71,3 +71,34 @@ Cycle 116: 6,892,139.91
 Cycle 117: 7,045,935.37
 ### Mars Close Approach Distances Over 117 Orbital Cycles (km):
 *(Full dataset showing libration pattern)*
+
+## Official Discovery Claim
+I, Petar Iliev Dryanovski, independently discovered and characterized a novel Mars-Earth near-resonant libration orbit enhanced by solar radiation pressure (SRP) on February 2026.
+
+## Timestamp Record
+- **First simulation**: February 2026
+- **Verification completed**: February 2026
+- **Repository created**: February 2026
+- **Public release**: February 2026
+
+##  License
+**CC BY-NC-SA 4.0** - Attribution-NonCommercial-ShareAlike 4.0 International
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. See the [LICENSE](LICENSE) file for the full legal text.
+
+### ✅ Permitted (with attribution to "Petar Iliev Dryanovski"):
+- Academic research (universities, institutions)
+- Government agencies (NASA, ESA, JAXA, etc.)
+- Educational use (classrooms, students)
+- Open-source non-commercial projects
+- Scientific publications
+
+### ❌ Requires Explicit Permission:
+- Commercial use (SpaceX, Blue Origin, telecom companies)
+- For-profit consulting/services
+- Proprietary implementations
+- Military applications
+
+### 📧 Commercial Inquiries:
+Contact: **Petar_Iliev84@hotmail.com**
+
